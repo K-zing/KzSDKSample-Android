@@ -1,0 +1,25 @@
+apply plugin: 'com.android.application'
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "com.kzing.sdksample"
+        minSdkVersion 19
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.kzingsdk:kzingsdk:0.0.17'
+}
