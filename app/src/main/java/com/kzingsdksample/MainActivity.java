@@ -206,7 +206,7 @@ public class MainActivity extends Activity {
                 .setParamPassword(password.getText().toString())
                 .addLoginCallBack(new LoginAPI.LoginCallBack() {
                     @Override
-                    public void onSuccess() {
+                    public void onSuccess(MemberInfo memberInfo) {
                         loginStatus.setText("Logined - " + user);
                     }
 
@@ -317,7 +317,6 @@ public class MainActivity extends Activity {
             }
         };
         KzingAPI.getGameList()
-                .setAvailableOnly(availableOnly)
                 .setRequestSubGame(requestSubGame)
                 .addGetGameListCallBack(getGameListCallBack)
                 .request(MainActivity.this);
@@ -460,7 +459,7 @@ public class MainActivity extends Activity {
 
     private void loadGameFromCache() {
         ArrayList<GamePlatformContainer> gamePlatformContainerList = KzingSDK.getInstance()
-                .loadGamePlatformFromCache(MainActivity.this, true, true);
+                .loadGamePlatformFromCache(MainActivity.this, true);
         logGameList(gamePlatformContainerList);
     }
 
