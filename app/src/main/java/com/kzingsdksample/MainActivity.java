@@ -118,6 +118,12 @@ public class MainActivity extends Activity {
                         Intent intent = new Intent(MainActivity.this, RegActivity.class);
                         startActivity(intent);
                         break;
+                    case GetRedPocketInfo:
+                        getRedPocketInfo();
+                        break;
+                    case RedeemRedPocket:
+                        redeemRedPocket();
+                        break;
                     case TransferToGame:
                         transferToGame();
                         break;
@@ -136,10 +142,10 @@ public class MainActivity extends Activity {
                     case DownloadAPPList:
                         getDownloadAppList();
                         break;
-                    case getBankDictionary:
+                    case GetBankDictionary:
                         getBankDictionary();
                         break;
-                    case getWithdrawBankList:
+                    case GetWithdrawBankList:
                         getWithdrawBankList();
                         break;
                     case addBankCard:
@@ -322,6 +328,16 @@ public class MainActivity extends Activity {
                 .request(MainActivity.this);
     }
 
+    private void getRedPocketInfo() {
+        KzingAPI.getRedPocketInfo()
+                .request(MainActivity.this);
+    }
+
+    private void redeemRedPocket() {
+        KzingAPI.redeemRedPocket()
+                .request(MainActivity.this);
+    }
+
     private void transferToGame() {
         KzingAPI.transferToGame()
                 .setParamGpAccountId("")
@@ -486,11 +502,13 @@ public class MainActivity extends Activity {
     private final String GetWithdrawRecord = "GetWithdrawRecord";
     private final String GetTransferRecord = "GetTransferRecord";
     private final String DownloadAPPList = "DownloadAPPList";
-    private final String getBankDictionary = "GetBankDictionary";
-    private final String getWithdrawBankList = "GetWithdrawBankList";
+    private final String GetBankDictionary = "GetBankDictionary";
+    private final String GetWithdrawBankList = "GetWithdrawBankList";
     private final String addBankCard = "AddBankCard";
     private final String submitWithdraw = "SubmitWithdraw";
     private final String GetBounsList = "GetBounsList";
+    private final String GetRedPocketInfo = "GetRedPocketInfo";
+    private final String RedeemRedPocket = "RedeemRedPocket";
     private final String playGame = "PlayGame";
     private final String playappgame = "Playappgame";
     private final String loadGameFromCache = "LoadGameFromCache";
@@ -516,19 +534,20 @@ public class MainActivity extends Activity {
             GetGameListWithStatusCheck,
             GetGameListWithStatusCheckAndSubGames,
             RegAccount,
+            GetRedPocketInfo,
+            RedeemRedPocket,
             TransferToGame,
             TransferBack,
             GetDepositRecord,
             GetWithdrawRecord,
             GetTransferRecord,
             DownloadAPPList,
-            getBankDictionary,
-            getWithdrawBankList,
+            GetBankDictionary,
+            GetWithdrawBankList,
             addBankCard,
             submitWithdraw,
             playGame,
             playappgame,
             loadGameFromCache,
     };
-
 }
