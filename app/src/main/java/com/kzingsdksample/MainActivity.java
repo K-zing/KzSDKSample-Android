@@ -52,9 +52,11 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        KzingSDK.getInstance().init(APIKEY);
-        KzingSDK.getInstance().setMd5Key(MD5KEY);
 
+        //TODO Step 1) init with APIKEY
+        KzingSDK.getInstance().init(APIKEY);
+        //TODO Step 2) setMd5Key
+        KzingSDK.getInstance().setMd5Key(MD5KEY);
         final ListView listView = findViewById(R.id.listview);
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
@@ -70,9 +72,11 @@ public class MainActivity extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (apiListItems[position]) {
                     case GetBasicKey:
+                        //TODO Step 3) getBasicKey()
                         getBasicKey();
                         break;
                     case GetDataKey:
+                        //TODO Step 4) getDataKey()
                         getDataKey();
                         break;
                     case Login:
@@ -142,9 +146,6 @@ public class MainActivity extends Activity {
                     case DownloadAPPList:
                         getDownloadAppList();
                         break;
-                    case GetBankDictionary:
-                        getBankDictionary();
-                        break;
                     case GetWithdrawBankList:
                         getWithdrawBankList();
                         break;
@@ -179,6 +180,8 @@ public class MainActivity extends Activity {
                     @Override
                     public void onSuccess(String response) {
                         KzingSDK.getInstance().setBasicRsaKey(response);
+                        //TODO Optional Step 3.1) You can cache the key when it success. So you don't need to load it every time start APP.
+                        KzingSDK.getInstance().cacheBasicRsaKey(MainActivity.this);
                     }
 
                     @Override
@@ -195,6 +198,8 @@ public class MainActivity extends Activity {
                     @Override
                     public void onSuccess(String response) {
                         KzingSDK.getInstance().setDataRsaKey(response);
+                        //TODO Optional Step 4.1) You can cache the key when it success. So you don't need to load it every time start APP.
+                        KzingSDK.getInstance().cacheDataRsaKey(MainActivity.this);
                     }
 
                     @Override
@@ -388,11 +393,6 @@ public class MainActivity extends Activity {
                 .request(MainActivity.this);
     }
 
-    private void getBankDictionary() {
-        KzingAPI.getBankDictionary()
-                .request(MainActivity.this);
-    }
-
     private void getWithdrawBankList() {
         KzingAPI.getWithdrawBankList()
                 .request(MainActivity.this);
@@ -502,7 +502,6 @@ public class MainActivity extends Activity {
     private final String GetWithdrawRecord = "GetWithdrawRecord";
     private final String GetTransferRecord = "GetTransferRecord";
     private final String DownloadAPPList = "DownloadAPPList";
-    private final String GetBankDictionary = "GetBankDictionary";
     private final String GetWithdrawBankList = "GetWithdrawBankList";
     private final String addBankCard = "AddBankCard";
     private final String submitWithdraw = "SubmitWithdraw";
@@ -542,7 +541,6 @@ public class MainActivity extends Activity {
             GetWithdrawRecord,
             GetTransferRecord,
             DownloadAPPList,
-            GetBankDictionary,
             GetWithdrawBankList,
             addBankCard,
             submitWithdraw,
